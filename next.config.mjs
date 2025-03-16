@@ -15,6 +15,34 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: [
+      'opengraph.githubassets.com',
+      'github.com',
+      'sjc.microlink.io',
+      'drive.google.com'
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'opengraph.githubassets.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'sjc.microlink.io',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+        pathname: '**',
+      }
+    ],
   },
   experimental: {
     webpackBuildWorker: true,

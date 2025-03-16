@@ -36,7 +36,7 @@ export function HackathonCard({ hackathon, className }: HackathonCardProps) {
           alt={hackathon.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
-          unoptimized={hackathon.image?.includes("v0.blob.com")}
+          unoptimized={hackathon.image?.includes("microlink.io") || hackathon.image?.includes("githubassets.com")}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
 
