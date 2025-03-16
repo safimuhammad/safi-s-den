@@ -6,6 +6,7 @@ import { GlitchText } from "./glitch-text"
 import { SkillBadge } from "./skill-badge"
 import { ExternalLink, Trophy, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getProxiedImageUrl } from "@/lib/image-utils"
 
 interface HackathonCardProps {
   hackathon: {
@@ -19,9 +20,10 @@ interface HackathonCardProps {
     url: string
   }
   className?: string
+  index?: number
 }
 
-export function HackathonCard({ hackathon, className }: HackathonCardProps) {
+export function HackathonCard({ hackathon, className, index = 0 }: HackathonCardProps) {
   return (
     <div
       className={cn(
@@ -32,11 +34,13 @@ export function HackathonCard({ hackathon, className }: HackathonCardProps) {
       {/* Hackathon image with overlay */}
       <div className="relative h-48 overflow-hidden">
         <Image
-          src={hackathon.image || "/placeholder.svg"}
+          src={getProxiedImageUrl(hackathon.image)}
           alt={hackathon.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
-          unoptimized={hackathon.image?.includes("microlink.io") || hackathon.image?.includes("githubassets.com")}
+          loading={index === 0 ? "eager" : "lazy"}
+          priority={index === 0}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
 

@@ -6,6 +6,7 @@ import { GlitchText } from "./glitch-text"
 import { SkillBadge } from "./skill-badge"
 import { ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getProxiedImageUrl } from "@/lib/image-utils"
 
 interface ProjectCardProps {
   project: {
@@ -18,9 +19,10 @@ interface ProjectCardProps {
     demo?: string | null
   }
   className?: string
+  index?: number
 }
 
-export function ProjectCard({ project, className }: ProjectCardProps) {
+export function ProjectCard({ project, className, index = 0 }: ProjectCardProps) {
   return (
     <div
       className={cn(
@@ -31,11 +33,13 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
       {/* Project image with overlay */}
       <div className="relative h-48 overflow-hidden">
         <Image
-          src={project.image || "/placeholder.svg"}
+          src={getProxiedImageUrl(project.image)}
           alt={project.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
-          unoptimized={project.image?.includes("githubassets.com")}
+          loading={index === 0 ? "eager" : "lazy"}
+          priority={index === 0}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
 
@@ -72,7 +76,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
               variant="outline"
               size="sm"
               className="border-fuchsia-500 text-fuchsia-400 hover:bg-fuchsia-950"
-              onClick={() => window.open(project.github, "_blank")}
+              onClick={() => project.github && window.open(project.github, "_blank")}
             >
               <Github size={16} className="mr-2" />
               Code
@@ -83,7 +87,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
               variant="outline"
               size="sm"
               className="border-fuchsia-500 text-fuchsia-400 hover:bg-fuchsia-950"
-              onClick={() => window.open(project.demo, "_blank")}
+              onClick={() => project.demo && window.open(project.demo, "_blank")}
             >
               <ExternalLink size={16} className="mr-2" />
               Demo
