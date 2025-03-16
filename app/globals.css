@@ -1,0 +1,428 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 60 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 180 100% 50%;
+    --input: 180 100% 50%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(2px, 0);
+  }
+  25% {
+    transform: translate(-2px, 0);
+  }
+  50% {
+    transform: translate(2px, 0);
+  }
+  75% {
+    transform: translate(-2px, 0);
+  }
+  100% {
+    transform: translate(2px, 0);
+  }
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 255, 255, 0.1);
+  opacity: 0.75;
+  animation: scanline 4s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.5);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p,
+span,
+div,
+li {
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.02em;
+}
+
+button,
+a.button,
+.btn {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+input,
+textarea,
+select {
+  font-family: "Share Tech Mono", monospace;
+}
+
+.text-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.text-glitch::before,
+.text-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.text-glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 #00ffff;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.text-glitch::after {
+  left: -2px;
+  text-shadow: 1px 0 #ff00ff;
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.text-cyber {
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.text-terminal {
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.05em;
+}
+
+.text-tech {
+  font-family: "Rajdhani", sans-serif;
+  letter-spacing: 0.05em;
+}
+
+@keyframes glitch-anim-1 {
+  0%,
+  100% {
+    clip-path: inset(50% 0 30% 0);
+  }
+  20% {
+    clip-path: inset(33% 0 33% 0);
+  }
+  40% {
+    clip-path: inset(10% 0 60% 0);
+  }
+  60% {
+    clip-path: inset(70% 0 20% 0);
+  }
+  80% {
+    clip-path: inset(40% 0 40% 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0%,
+  100% {
+    clip-path: inset(40% 0 40% 0);
+  }
+  20% {
+    clip-path: inset(60% 0 30% 0);
+  }
+  40% {
+    clip-path: inset(20% 0 60% 0);
+  }
+  60% {
+    clip-path: inset(30% 0 50% 0);
+  }
+  80% {
+    clip-path: inset(50% 0 30% 0);
+  }
+}
+
+.tech-frame {
+  position: relative;
+  border: 1px solid rgba(122, 255, 0, 0.3);
+}
+
+.tech-frame::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid rgba(122, 255, 0, 0.8);
+  border-left: 1px solid rgba(122, 255, 0, 0.8);
+}
+
+.tech-frame::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 1px solid rgba(122, 255, 0, 0.8);
+  border-right: 1px solid rgba(122, 255, 0, 0.8);
+}
+
+.tech-marker {
+  position: absolute;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: rgba(122, 255, 0, 0.8);
+}
+
+.tech-marker.top-left {
+  top: -10px;
+  left: 10px;
+}
+
+.tech-marker.top-right {
+  top: -10px;
+  right: 10px;
+}
+
+.tech-marker.bottom-left {
+  bottom: -10px;
+  left: 10px;
+}
+
+.tech-marker.bottom-right {
+  bottom: -10px;
+  right: 10px;
+}
+
+.diagonal-line {
+  position: absolute;
+  height: 1px;
+  background: rgba(122, 255, 0, 0.3);
+  transform-origin: 0 0;
+  transform: rotate(-45deg);
+}
+
+/* Add these cyberpunk-specific text styles */
+.cyber-heading {
+  position: relative;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+}
+
+.cyber-heading::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  text-shadow: -1px 0 #00ffff;
+  top: 0;
+  color: transparent;
+  background: transparent;
+  overflow: hidden;
+  animation: cyber-glitch-1 5s infinite linear alternate-reverse;
+}
+
+.cyber-heading::after {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 1px 0 #ff00ff;
+  top: 0;
+  color: transparent;
+  background: transparent;
+  overflow: hidden;
+  animation: cyber-glitch-2 4s infinite linear alternate-reverse;
+}
+
+@keyframes cyber-glitch-1 {
+  0% {
+    clip-path: inset(97% 0 1% 0);
+  }
+  10% {
+    clip-path: inset(33% 0 58% 0);
+  }
+  20% {
+    clip-path: inset(4% 0 82% 0);
+  }
+  30% {
+    clip-path: inset(44% 0 47% 0);
+  }
+  40% {
+    clip-path: inset(76% 0 2% 0);
+  }
+  50% {
+    clip-path: inset(23% 0 55% 0);
+  }
+  60% {
+    clip-path: inset(89% 0 9% 0);
+  }
+  70% {
+    clip-path: inset(34% 0 45% 0);
+  }
+  80% {
+    clip-path: inset(12% 0 67% 0);
+  }
+  90% {
+    clip-path: inset(57% 0 32% 0);
+  }
+  100% {
+    clip-path: inset(79% 0 5% 0);
+  }
+}
+
+@keyframes cyber-glitch-2 {
+  0% {
+    clip-path: inset(21% 0 68% 0);
+  }
+  10% {
+    clip-path: inset(84% 0 12% 0);
+  }
+  20% {
+    clip-path: inset(45% 0 46% 0);
+  }
+  30% {
+    clip-path: inset(3% 0 87% 0);
+  }
+  40% {
+    clip-path: inset(67% 0 29% 0);
+  }
+  50% {
+    clip-path: inset(14% 0 73% 0);
+  }
+  60% {
+    clip-path: inset(63% 0 25% 0);
+  }
+  70% {
+    clip-path: inset(39% 0 54% 0);
+  }
+  80% {
+    clip-path: inset(5% 0 81% 0);
+  }
+  90% {
+    clip-path: inset(71% 0 18% 0);
+  }
+  100% {
+    clip-path: inset(25% 0 66% 0);
+  }
+}
+
+.terminal-text {
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  position: relative;
+}
+
+.terminal-text::after {
+  content: "|";
+  position: absolute;
+  right: -0.5em;
+  animation: blink 1s infinite;
+}
+
